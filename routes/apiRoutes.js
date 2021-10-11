@@ -45,7 +45,7 @@ module.exports = app => {
         app.get('*', function(req, res) {
             res.sendFile(path.join(__dirname, "../public/index.html"));
         });
-        '
+
 
         //updates db if user adds or deletes notes
 
