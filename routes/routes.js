@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = app => {
 
     // Setup notes variable
-    fs.readFile("./Develop/db/db.json", "utf8", (err, data) => {
+    fs.readFile("./db/db.json", "utf8", (err, data) => {
 
         if (err) throw err;
 
@@ -46,17 +46,17 @@ module.exports = app => {
 
         // Display notes.html when /notes is accessed
         app.get('/notes', function(req, res) {
-            res.sendFile(path.join(__dirname, "./Develop/public/notes.html"));
+            res.sendFile(path.join(__dirname, "../public/notes.html"));
         });
 
         // Display index.html when all other routes are accessed
         app.get('*', function(req, res) {
-            res.sendFile(path.join(__dirname, "./Develop/public/index.html"));
+            res.sendFile(path.join(__dirname, "../public/index.html"));
         });
 
         //updates the json file whenever a note is added or deleted
         function updateDb() {
-            fs.writeFile("./Develop/db/db.json", JSON.stringify(notes, '\t'), err => {
+            fs.writeFile("db/db.json", JSON.stringify(notes, '\t'), err => {
                 if (err) throw err;
                 return true;
             });
