@@ -1,5 +1,8 @@
+// adding dependencies
 const fs = require('fs');
 const path = require('path');
+
+//creating exporting function
 
 module.exports = app => {
 
@@ -8,6 +11,8 @@ module.exports = app => {
         if (err) throw err;
 
         const noteInput = JSON.parse(data);
+
+        // creating get and post route for notes input
 
         app.get("/api/notes", function(req, res) {
             res.json(noteInput);
@@ -20,6 +25,7 @@ module.exports = app => {
             return console.log("New notes have been added: " + newNote.title);
         });
 
+        //get and delete request for saved notes
         app.get("/api/notes/:id", function(req, res) {
             res.json(noteInput[req.params.id]);
         });
@@ -29,6 +35,8 @@ module.exports = app => {
             updateDb();
             console.log("This note has been deleted, ID: " + req.params.id);
         });
+
+        //append and display notes input to html page
 
         app.get('/notes', function(req, res) {
             res.sendFile(path.join(__dirname, "../public/notes.html"));
