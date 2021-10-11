@@ -1,9 +1,14 @@
+// adding depenencies
 const express = require("express");
 const fs = require("fs");
 const path = require('path');
 
+
+//create unique port
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+//data parsing and activating port
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
